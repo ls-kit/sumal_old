@@ -43,3 +43,5 @@ packages/
 npm-debug.log
 yarn-error.log
 
+storage/framework/views/
+storage/framework/sessions/
