@@ -8,11 +8,17 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
 
-class User extends Authenticatable
+// added from osiset 
+use Osiset\ShopifyApp\Contracts\ShopModel as IShopModel;
+use Osiset\ShopifyApp\Traits\ShopModel;
+// updated from osiset
+class User extends Authenticatable implements IShopModel 
 {
     use HasRoleAndPermission;
     use Notifiable;
     use SoftDeletes;
+
+    use ShopModel;  // added from osiset
 
     /**
      * The database table used by the model.
