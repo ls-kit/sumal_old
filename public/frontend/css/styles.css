@@ -1,0 +1,241 @@
+h1, h2, p {
+    text-align: center;
+  }
+
+ body {
+  background-color: #f5fcf9;
+  height: auto;
+  padding: auto;
+  }
+    /* The navbar container */
+    .topnav {
+      overflow: hidden;
+      float: right;
+      position: relative;
+        display: flex;
+          flex-direction: row;
+      }
+
+        
+  
+    /* Navbar links */
+    .topnav a {
+         text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-family: 'Cairo', sans-serif;
+      font-family: 'Josefin Sans', sans-serif;
+      font-size: 2ch;
+      margin-left: 5px; 
+   margin-right: 10px; 
+  
+    }
+        
+  
+    /* Links - change color on hover */
+    .topnav a:hover {
+      background-color: rgba(191, 223, 199, 0.61);
+      color: rgb(2, 43, 2); 
+      border-radius: 1px 30px; 
+      width: auto;
+    }
+
+    .header {
+         text-align: center;
+      padding-top: 5%;
+      padding-bottom: 5%;
+
+    }
+    header h1 {
+      font-family: 'Josefin Sans', sans-serif;
+          text-shadow: 2px 2px yellow;
+
+          }
+    h2 {font-family: 'Cairo', sans-serif;
+      font-family: 'Josefin Sans', sans-serif;
+    }
+    p {
+      font-family: 'Varela Round', sans-serif;
+    }
+/*  three equal columns that float next to each other */ 
+.column {
+  float: left;
+  max-width: 25%;
+  border-radius: 15px 50px;
+  border: 1px solid #73AD21;
+  padding: 20px;
+  height: 120pt;
+  column-gap: 2px; 
+  column-count: 2;
+  margin-left: 6pt;
+
+}
+.price {
+float: left;
+max-width: fit-content;
+margin: auto;
+padding: auto;
+}
+
+.col{
+ width: 100%;
+ margin-left: 3%;
+ margin-right: -6%;
+
+}
+
+/*  a card effect  */
+.card {
+  background-color: white;
+  border-radius: 15px 70px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other on smaller screens (600px wide or less) */
+@media screen and (max-width: 600px) {
+  .column {
+    max-width: fit-content;
+    column-count: 1;
+    border: none;
+    height: auto;
+    float: none;
+  }
+    .topnav {
+            max-width: fit-content;
+            border: none;
+            height: auto;
+            float: none;
+            display: block;
+          }
+}
+    
+
+  h1 {
+    font-family: helvetica;
+    font-size: 44pt;
+  }
+
+
+
+/*BUTTONS*/
+        .button {
+          display: inline-block;
+          border-radius: 2px 20px;
+          background-color: #cee407d8;
+          border: none;
+          color: #ffffff;
+          text-align: center;
+          font-size: 28px;
+          padding: 2px;
+          width: auto;
+          transition: all 0.5s;
+          cursor: pointer;
+          margin: 5px;
+          margin-top: 0%;
+        
+        }
+       
+                 .button a:link {
+                   text-decoration: none;
+                   color: #333;
+                 }
+        
+                 a:visited {
+                   text-decoration: none;
+                 }
+        
+                 a:active {
+                   text-decoration: none;
+                 }
+    
+        .button span {
+          cursor: pointer;
+          display: inline-block;
+          position: relative;
+          transition: 0.5s;
+          text-decoration: none;
+        }
+    
+        .button span:after {
+          content: '\00bb';
+          position: absolute;
+          opacity: 0;
+          top: 0;
+          right: -20px;
+          transition: 0.5s;
+          text-decoration: none;
+        }
+    
+        .button:hover span {
+          padding-right: 25px;
+          text-decoration: none;
+        }
+    
+        .button:hover span:after {
+          opacity: 1;
+          right: 1;
+          text-decoration: none;
+        }
+ .button2 {
+ display: inline-block;
+border-radius: 10px 30px;
+  background-color: #e9f545;
+ border: none;
+  color: #ffffff;
+ text-align: center;
+ font-size: 28px;
+  padding: 8px;
+  width: 250px;
+ transition: all 0.5s;
+ cursor: pointer;
+ margin: 5px;
+                                
+ }
+ .button2 a:link {
+  text-decoration: none;
+  color: #333;
+   }
+ a:visited {
+  text-decoration: none;
+  }
+                                
+ a:active {
+ text-decoration: none;
+  }
+
+  .footer {
+      background-color: black;
+      text-align: center;
+      margin: auto;
+      padding: auto;
+      color: #ffffff;
+
+    }
+
+        .img1 {
+          width: 100px;
+          height: 70px;
+          display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+                 .img2  {
+                   width: 150px;
+                   height: 150px; 
+                   display: block;
+                   float: right;
+                  
+                  
+                 }
+
+                     li {
+                       font-family: 'Varela Round', sans-serif;
+                     }
