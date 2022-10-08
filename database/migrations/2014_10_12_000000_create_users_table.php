@@ -23,13 +23,14 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->boolean('activated')->default(false);
-            $table->string('token');
+            $table->string('token')->nullable();
             $table->ipAddress('signup_ip_address')->nullable();
             $table->ipAddress('signup_confirmation_ip_address')->nullable();
             $table->ipAddress('signup_sm_ip_address')->nullable();
             $table->ipAddress('admin_ip_address')->nullable();
             $table->ipAddress('updated_ip_address')->nullable();
             $table->ipAddress('deleted_ip_address')->nullable();
+            $table->integer('is_admin')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

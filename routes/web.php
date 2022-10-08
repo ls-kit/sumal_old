@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,7 +50,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']]
 
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'App\Http\Controllers\Auth\ActivateController@activationRequired'])->name('activation-required');
-    Route::get('/logout', ['uses' => 'App\Http\Controllers\Auth\LoginController@logout'])->name('logout');
+    // Route::get('/logout', ['uses' => 'App\Http\Controllers\Auth\LoginController@logout'])->name('logout');
 });
 
 // Registered and Activated User Routes
@@ -82,15 +83,15 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
         ]
     );
     Route::put('profile/{username}/updateUserAccount', [
-        'as'   => '{username}',
+        // 'as'   => '{username}',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserAccount',
     ]);
     Route::put('profile/{username}/updateUserPassword', [
-        'as'   => '{username}',
+        // 'as'   => '{username}',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserPassword',
     ]);
     Route::delete('profile/{username}/deleteUserAccount', [
-        'as'   => '{username}',
+        // 'as'   => '{username}',
         'uses' => 'App\Http\Controllers\ProfilesController@deleteUserAccount',
     ]);
 
@@ -144,3 +145,22 @@ Route::get('/', function () {
 Route::get('/login',function(){
     return view('login');
 })->name('login');
+
+
+// TICKET RELATED ROUTES
+Auth::routes();
+// Route::get('/', 'HomeController@index');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('new-ticket', 'App\Http\Controllers\TicketsController@create');
+Route::post('new-ticket', 'App\Http\Controllers\TicketsController@store');
+Route::get('my_tickets', 'App\Http\Controllers\TicketsController@userTickets');
+Route::get('tickets/{ticket_id}', 'App\Http\Controllers\TicketsController@show');
+
+Route::post('comment', 'App\Http\Controllers\CommentsController@postComment');
+
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function () {
+    Route::get('tickets', 'App\Http\Controllers\TicketsController@index');
+    Route::post('close_ticket/{ticket_id}', 'App\Http\Controllers\TicketsController@close');
+});
+// TICKET RELATED ROUTES

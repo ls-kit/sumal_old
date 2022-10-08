@@ -168,4 +168,14 @@ class User extends Authenticatable implements IShopModel
     {
         return $this->profiles()->detach($profile);
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }
