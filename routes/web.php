@@ -24,6 +24,16 @@ Route::get('/login',function(){
     return view('login');
 })->name('login');
 
+Route::get('/prod', function () {
+    return view('products');
+})->middleware(['verify.shopify'])->name('products');
+
+Route::get('/test', function () {
+    $products = Auth::user()->api()->rest('GET', '/admin/api/2022-10/products.json')['body'];
+    return view('products', compact('products'));
+})->middleware(['verify.shopify'])->name('products');
+
+
 Route::get('/home', ['as' => 'public.home',   'uses' => 'App\Http\Controllers\UserController@index']);
 // Homepage Route
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
