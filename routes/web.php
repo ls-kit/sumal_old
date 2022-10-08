@@ -16,9 +16,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(['verify.shopify'])->name('home');
+
+Route::get('/login',function(){
+    return view('login');
+})->name('login');
+
+Route::get('/home', ['as' => 'public.home',   'uses' => 'App\Http\Controllers\UserController@index']);
 // Homepage Route
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
-    Route::get('/', 'App\Http\Controllers\WelcomeController@login')->name('home');
+    // Route::get('/', 'App\Http\Controllers\WelcomeController@login')->name('home');
     Route::get('/prices', 'App\Http\Controllers\Frontend\HomeController@prices')->name('prices');
     Route::get('/sorry', 'App\Http\Controllers\Frontend\HomeController@sorry')->name('sorry');
     Route::get('/terms', 'App\Http\Controllers\TermsController@terms')->name('terms');
@@ -138,13 +147,7 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
 Route::redirect('/php', '/phpinfo', 301);
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['verify.shopify'])->name('home');
 
-Route::get('/login',function(){
-    return view('login');
-})->name('login');
 
 
 // TICKET RELATED ROUTES
