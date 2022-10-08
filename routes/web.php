@@ -28,6 +28,13 @@ Route::get('/prod', function () {
     return view('products');
 })->middleware(['verify.shopify'])->name('products');
 
+// customer api call. Requested access also setup from admin
+Route::get('/cus', function () {
+    $customers = Auth::user()->api()->rest('GET', '/admin/api/2022-01/customers.json')['body'];
+    return view('customers', compact('customers'));
+})->middleware(['verify.shopify'])->name('customers');
+
+// products api call as test and show data on view page data pass with $products and compact
 Route::get('/test', function () {
     $products = Auth::user()->api()->rest('GET', '/admin/api/2022-10/products.json')['body'];
     return view('products', compact('products'));
