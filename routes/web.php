@@ -15,9 +15,42 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
+// Shopify custom routes
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(['verify.shopify'])->name('home');
+
+Route::get('/login',function(){
+    return view('login');
+})->name('login');
+// customer api call. Requested access also setup from admin
+Route::get('/customers', function () {
+    $customers = Auth::user()->api()->rest('GET', '/admin/api/2022-01/customers.json')['body'];
+    return view('customers', compact('customers'));
+})->middleware(['verify.shopify'])->name('customers');
+
+// products api call as test and show data on view page data pass with $products and compact
+Route::get('/products', function () {
+    $products = Auth::user()->api()->rest('GET', '/admin/api/2022-10/products.json')['body'];
+    return view('products', compact('products'));
+})->middleware(['verify.shopify'])->name('products');
+
+Route::post('/button/toggler','ShowHideButtonController@ShowHideButton')->name('btn.toggler');
+
+Route::get('/test', function(){
+    $result =Auth::user()->api()->rest('GET', '/admin/api/2022-07/script_tags.json');
+    dd($result);
+})->middleware(['verify.shopify'])->name('test`');
+
+
+
+
+
 // Homepage Route
 Route::group(['middleware' => ['web', 'checkblocked']], function () {
-    Route::get('/', 'App\Http\Controllers\WelcomeController@login')->name('home');
+    // Route::get('/', 'App\Http\Controllers\WelcomeController@login')->name('home');
     Route::get('/prices', 'App\Http\Controllers\Frontend\HomeController@prices')->name('prices');
     Route::get('/sorry', 'App\Http\Controllers\Frontend\HomeController@sorry')->name('sorry');
     Route::get('/terms', 'App\Http\Controllers\TermsController@terms')->name('terms');
@@ -136,27 +169,3 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
 
 Route::redirect('/php', '/phpinfo', 301);
 
-
-
-// Shopify custom routes
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['verify.shopify'])->name('home');
-
-Route::get('/login',function(){
-    return view('login');
-})->name('login');
-
-
-
-// customer api call. Requested access also setup from admin
-Route::get('/customers', function () {
-    $customers = Auth::user()->api()->rest('GET', '/admin/api/2022-01/customers.json')['body'];
-    return view('customers', compact('customers'));
-})->middleware(['verify.shopify'])->name('customers');
-
-// products api call as test and show data on view page data pass with $products and compact
-Route::get('/products', function () {
-    $products = Auth::user()->api()->rest('GET', '/admin/api/2022-10/products.json')['body'];
-    return view('products', compact('products'));
-})->middleware(['verify.shopify'])->name('products');

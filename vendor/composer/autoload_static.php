@@ -768,6 +768,7 @@ class ComposerStaticInitd9ca8247bb37e4f5c0aa5e98ff8bc9cd
         'App\\Logic\\Activation\\ActivationRepository' => __DIR__ . '/../..' . '/app/Logic/Activation/ActivationRepository.php',
         'App\\Mail\\ExceptionOccured' => __DIR__ . '/../..' . '/app/Mail/ExceptionOccured.php',
         'App\\Models\\Activation' => __DIR__ . '/../..' . '/app/Models/Activation.php',
+        'App\\Models\\ButtonDetail' => __DIR__ . '/../..' . '/app/Models/ButtonDetail.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',
         'App\\Models\\Comment' => __DIR__ . '/../..' . '/app/Models/Comment.php',
         'App\\Models\\Profile' => __DIR__ . '/../..' . '/app/Models/Profile.php',

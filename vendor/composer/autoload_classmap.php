@@ -43,6 +43,7 @@ return array(
     'App\\Logic\\Activation\\ActivationRepository' => $baseDir . '/app/Logic/Activation/ActivationRepository.php',
     'App\\Mail\\ExceptionOccured' => $baseDir . '/app/Mail/ExceptionOccured.php',
     'App\\Models\\Activation' => $baseDir . '/app/Models/Activation.php',
+    'App\\Models\\ButtonDetail' => $baseDir . '/app/Models/ButtonDetail.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Comment' => $baseDir . '/app/Models/Comment.php',
     'App\\Models\\Profile' => $baseDir . '/app/Models/Profile.php',
