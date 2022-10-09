@@ -135,3 +135,12 @@ Route::group(['middleware' => ['auth', 'activated', 'role:admin', 'activity', 't
 });
 
 Route::redirect('/php', '/phpinfo', 301);
+
+
+Route::get('/', function () {
+    return view('welcome');
+})->middleware(['verify.shopify'])->name('home');
+
+Route::get('/login',function(){
+    return view('login');
+})->name('login');
