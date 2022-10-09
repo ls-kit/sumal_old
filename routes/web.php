@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Setting;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,29 @@ use Illuminate\Support\Facades\Route;
 | Middleware options can be located in `app/Http/Kernel.php`
 |
 */
+
+Route::group(['middleware' => 'verify.shopify'], function () {
+    Route::get('/set', function () {
+        $setting = Setting::where("shop_id", Auth::user()->name)->first();
+        // dd(Auth::user()->name);
+        return view('dashboard', compact('setting'));
+    })->name('set');
+
+    Route::view('/products', 'products');
+    Route::view('/customers', 'customers');
+    Route::view('/settings', 'settings');
+
+    // new added controlller
+    /**
+     * We are useing laravel ^8. routeing style hasbeen changed after laravel 7
+     * @see: https://laravel.com/docs/9.x/controllers
+     */
+    // Route::post('configure-theme', [SettingController::class, 'configureTheme']);
+    Route::post('configure-theme', 'App\Http\Controllers\SettingController@configureTheme');
+    Route::resource('settings', SettingController::class);
+
+
+});
 
 
 
@@ -37,7 +62,7 @@ Route::get('/products', function () {
     return view('products', compact('products'));
 })->middleware(['verify.shopify'])->name('products');
 
-Route::post('/button/toggler','ShowHideButtonController@ShowHideButton')->name('btn.toggler');
+Route::post('/button/toggler','App\Http\Controllers\ShowHideButtonController@ShowHideButton')->name('btn.toggler');
 
 Route::get('/test', function(){
     $result =Auth::user()->api()->rest('GET', '/admin/api/2022-07/script_tags.json');
@@ -82,7 +107,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']]
 
     // Activation Routes
     Route::get('/activation-required', ['uses' => 'App\Http\Controllers\Auth\ActivateController@activationRequired'])->name('activation-required');
-    Route::get('/logout', ['uses' => 'App\Http\Controllers\Auth\LoginController@logout'])->name('logout');
+    // Route::get('/logout', ['uses' => 'App\Http\Controllers\Auth\LoginController@logout'])->name('logout');
 });
 
 // Registered and Activated User Routes
@@ -115,15 +140,15 @@ Route::group(['middleware' => ['auth', 'activated', 'currentUser', 'activity', '
         ]
     );
     Route::put('profile/{username}/updateUserAccount', [
-        'as'   => '{username}',
+        // 'as'   => '{username}',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserAccount',
     ]);
     Route::put('profile/{username}/updateUserPassword', [
-        'as'   => '{username}',
+        // 'as'   => '{username}',
         'uses' => 'App\Http\Controllers\ProfilesController@updateUserPassword',
     ]);
     Route::delete('profile/{username}/deleteUserAccount', [
-        'as'   => '{username}',
+        // 'as'   => '{username}',
         'uses' => 'App\Http\Controllers\ProfilesController@deleteUserAccount',
     ]);
 

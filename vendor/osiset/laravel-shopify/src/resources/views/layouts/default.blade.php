@@ -40,7 +40,8 @@
             @include('shopify-app::partials.token_handler')
             @include('shopify-app::partials.flash_messages')
         @endif
-
+        
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
         @yield('scripts')
     </body>
 </html>
