@@ -16,6 +16,8 @@ use App\Models\Setting;
 | Middleware options can be located in `app/Http/Kernel.php`
 |
 */
+Route::tickets('App\Http\Controllers\TicketController');
+Route::categories('App\Http\Controllers\CategoryController');
 
 Route::group(['middleware' => 'verify.shopify'], function () {
     Route::get('/set', function () {
@@ -35,7 +37,7 @@ Route::group(['middleware' => 'verify.shopify'], function () {
      */
     // Route::post('configure-theme', [SettingController::class, 'configureTheme']);
     Route::post('configure-theme', 'App\Http\Controllers\SettingController@configureTheme');
-    Route::resource('settings', SettingController::class);
+    Route::resource('settings', 'App\Http\Controllers\SettingController');
 
 
 });
@@ -69,7 +71,10 @@ Route::get('/test', function(){
     dd($result);
 })->middleware(['verify.shopify'])->name('test`');
 
-
+Route::group(['middleware' => ['verify.shopify']], function () {
+    //  Homepage Route - Redirect based on user role is in controller.
+    Route::get('/home', ['as' => 'public.home',   'uses' => 'App\Http\Controllers\UserController@index']);
+});
 
 
 
@@ -114,7 +119,7 @@ Route::group(['middleware' => ['auth', 'activated', 'activity', 'checkblocked']]
 Route::group(['middleware' => ['auth', 'activated', 'activity', 'twostep', 'checkblocked']], function () {
 
     //  Homepage Route - Redirect based on user role is in controller.
-    Route::get('/home', ['as' => 'public.home',   'uses' => 'App\Http\Controllers\UserController@index']);
+    // Route::get('/home', ['as' => 'public.home',   'uses' => 'App\Http\Controllers\UserController@index']);
 
     // Show users profile - viewable by other users.
     Route::get('profile/{username}', [

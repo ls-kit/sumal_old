@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+use RexlManu\LaravelTickets\Traits\HasTickets;
 
 // added from osiset 
 use Osiset\ShopifyApp\Contracts\ShopModel as IShopModel;
@@ -17,8 +18,8 @@ class User extends Authenticatable implements IShopModel
     use HasRoleAndPermission;
     use Notifiable;
     use SoftDeletes;
-
     use ShopModel;  // added from osiset
+    use HasTickets;
 
     /**
      * The database table used by the model.

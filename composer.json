@@ -35,6 +35,7 @@
         "osiset/laravel-shopify": "^17.3",
         "pusher/pusher-php-server": "^4.1",
         "rap2hpoutre/laravel-log-viewer": "^1.4",
+        "rexlmanu/laravel-tickets": "^2.4",
         "shvetsgroup/laravel-email-database-log": "^8.0.0",
         "socialiteproviders/37signals": "^3.0",
         "socialiteproviders/generators": "^4.6.1",

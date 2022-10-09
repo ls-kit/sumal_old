@@ -1,0 +1,53 @@
+{
+    "name": "rexlmanu/laravel-tickets",
+    "description": "Simple but effective solutions to provide support",
+    "keywords": [
+        "rexlmanu",
+        "laravel-tickets"
+    ],
+    "homepage": "https://github.com/rexlmanu/laravel-tickets",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Emmanuel Lampe",
+            "email": "rexlmanude@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0|^9.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.4",
+        "phpunit/phpunit": "^9.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "RexlManu\\LaravelTickets\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "RexlManu\\LaravelTickets\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RexlManu\\LaravelTickets\\LaravelTicketsServiceProvider"
+            ],
+            "aliases": {
+                "LaravelTickets": "RexlManu\\LaravelTickets\\LaravelTicketsFacade"
+            }
+        }
+    }
+}

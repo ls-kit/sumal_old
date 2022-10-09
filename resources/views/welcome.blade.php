@@ -1,6 +1,11 @@
 @extends('shopify-app::layouts.default')
 
 @section('content')
+    @php
+        // dd(request());
+    @endphp
+    <a href="{{ route('public.home') }}">Home</a>
+    <a href="{{ url('/tickets/create') }}">Home</a>
     <!-- You are: (shop domain name) -->
     <p>You are: {{ $shopDomain ?? Auth::user()->name }}</p>
     <div class="check-cart">
